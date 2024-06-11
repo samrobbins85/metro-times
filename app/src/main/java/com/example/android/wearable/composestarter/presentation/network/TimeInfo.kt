@@ -1,0 +1,14 @@
+package com.example.android.wearable.composestarter.presentation.network
+
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class TimeInfo(
+    val trn: String,
+    val lastEvent: String,
+    val lastEventLocation: String,
+    val lastEventTime: String,
+    val destination: String,
+    val dueIn: Int,
+    val line: String
+)

@@ -5,6 +5,7 @@ import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
@@ -33,10 +34,10 @@ import com.google.android.horologist.compose.layout.ScreenScaffold
 import com.google.android.horologist.compose.layout.rememberResponsiveColumnState
 import com.google.android.horologist.compose.material.Button
 import com.google.android.horologist.compose.material.ButtonSize
-import com.google.android.horologist.compose.material.ListHeaderDefaults
-import com.google.android.horologist.compose.material.ResponsiveListHeader
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 private fun formatDate(date: String): String {
     val formatter = DateTimeFormatter.ofPattern("h:mm a")
@@ -63,7 +64,7 @@ fun TimesScreen(station: String, platform: String) {
     val timeState = timeViewModel.timeState
     val columnState = rememberResponsiveColumnState(
         contentPadding = ScalingLazyColumnDefaults.padding(
-            first = ScalingLazyColumnDefaults.ItemType.Text,
+            first = ScalingLazyColumnDefaults.ItemType.Card,
             last = ScalingLazyColumnDefaults.ItemType.SingleButton
         )
     )
@@ -95,11 +96,6 @@ fun TimesScreen(station: String, platform: String) {
                     modifier = Modifier.fillMaxSize()
 
                 ) {
-                    item {
-                        ResponsiveListHeader(contentPadding = ListHeaderDefaults.firstItemPadding()) {
-                            Text(text = "Times")
-                        }
-                    }
                     items(timeState.times.toList()) { time ->
                         TitleCard(
                             onClick = {},
@@ -138,7 +134,14 @@ fun TimesScreen(station: String, platform: String) {
                         Button(
                             imageVector = Icons.Default.Refresh,
                             contentDescription = "Refresh",
-                            onClick = timeViewModel::getTimes,
+                            onClick = {
+                                timeViewModel.getTimes();
+                                runBlocking {
+                                    launch {
+                                        columnState.scrollBy(-10000f)
+                                    }
+                                }
+                            },
                             buttonSize = ButtonSize.Small,
                             modifier = Modifier.rotate(if (timeState.loading) angle else 0f)
                         )

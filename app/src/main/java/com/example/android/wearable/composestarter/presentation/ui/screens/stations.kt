@@ -12,7 +12,6 @@ import androidx.wear.compose.material.ChipDefaults
 import androidx.wear.compose.material.CircularProgressIndicator
 import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Text
-import androidx.wear.compose.material.TitleCard
 import com.example.android.wearable.composestarter.presentation.ui.StationState
 import com.example.android.wearable.composestarter.presentation.ui.StationViewModel
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
@@ -36,7 +35,7 @@ fun ListScreen(selectStation: (String) -> Unit) {
     val columnState = rememberResponsiveColumnState(
         contentPadding = ScalingLazyColumnDefaults.padding(
             first = ScalingLazyColumnDefaults.ItemType.Text,
-            last = ScalingLazyColumnDefaults.ItemType.SingleButton
+            last = ScalingLazyColumnDefaults.ItemType.Chip
         )
     )
 

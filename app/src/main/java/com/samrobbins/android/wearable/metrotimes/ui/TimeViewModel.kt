@@ -1,4 +1,4 @@
-package com.example.android.wearable.composestarter.presentation.ui
+package com.samrobbins.android.wearable.metrotimes.ui
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -6,8 +6,8 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.android.wearable.composestarter.presentation.network.NexusApi
-import com.example.android.wearable.composestarter.presentation.network.TimeInfo
+import com.samrobbins.android.wearable.metrotimes.network.NexusApi
+import com.samrobbins.android.wearable.metrotimes.network.TimeInfo
 import java.io.IOException
 import kotlinx.coroutines.launch
 

@@ -1,4 +1,4 @@
-package com.example.android.wearable.composestarter.presentation.ui.screens
+package com.samrobbins.android.wearable.metrotimes.ui.screens
 
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloat
@@ -25,8 +25,6 @@ import androidx.wear.compose.material.CircularProgressIndicator
 import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.TitleCard
-import com.example.android.wearable.composestarter.presentation.ui.TimeState
-import com.example.android.wearable.composestarter.presentation.ui.TimeViewModel
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.compose.layout.ScalingLazyColumn
 import com.google.android.horologist.compose.layout.ScalingLazyColumnDefaults
@@ -34,6 +32,8 @@ import com.google.android.horologist.compose.layout.ScreenScaffold
 import com.google.android.horologist.compose.layout.rememberResponsiveColumnState
 import com.google.android.horologist.compose.material.Button
 import com.google.android.horologist.compose.material.ButtonSize
+import com.samrobbins.android.wearable.metrotimes.ui.TimeState
+import com.samrobbins.android.wearable.metrotimes.ui.TimeViewModel
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 import kotlinx.coroutines.launch
@@ -135,7 +135,7 @@ fun TimesScreen(station: String, platform: String) {
                             imageVector = Icons.Default.Refresh,
                             contentDescription = "Refresh",
                             onClick = {
-                                timeViewModel.getTimes();
+                                timeViewModel.getTimes()
                                 runBlocking {
                                     launch {
                                         columnState.scrollBy(-10000f)

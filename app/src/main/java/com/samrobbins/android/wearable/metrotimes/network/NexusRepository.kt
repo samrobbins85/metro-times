@@ -1,11 +1,11 @@
-package com.example.android.wearable.composestarter.presentation.network
+package com.samrobbins.android.wearable.metrotimes.network
 
 interface NexusRepository {
     suspend fun getStations(): Map<String, String>
     suspend fun getPlatforms(): Map<String, List<PlatformInfo>>
 }
 
-class NetworkNexusRepository(): NexusRepository{
+class NetworkNexusRepository() : NexusRepository {
     override suspend fun getStations(): Map<String, String> {
         return NexusApi.retrofitService.getStations()
     }

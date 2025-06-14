@@ -13,15 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.wearable.composestarter.presentation.theme
+package com.samrobbins.android.wearable.metrotimes.theme
 
 import androidx.compose.ui.graphics.Color
 import androidx.wear.compose.material.Colors
 
-val Purple200 = Color(0xFFBB86FC)
-val Purple500 = Color(0xFF6200EE)
-val Purple700 = Color(0xFF3700B3)
-val Teal200 = Color(0xFF03DAC5)
 val Red400 = Color(0xFFCF6679)
 val primaryDark = Color(0xFFF0BF6D)
 val primaryContainerDark = Color(0xFF5F4100)

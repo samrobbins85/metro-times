@@ -1,4 +1,4 @@
-package com.example.android.wearable.composestarter.presentation.ui.screens
+package com.samrobbins.android.wearable.metrotimes.ui.screens
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -8,34 +8,32 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.wear.compose.foundation.lazy.items
-import androidx.wear.compose.material.ChipDefaults
+import androidx.wear.compose.material.CardDefaults
 import androidx.wear.compose.material.CircularProgressIndicator
 import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Text
-import com.example.android.wearable.composestarter.presentation.ui.StationState
-import com.example.android.wearable.composestarter.presentation.ui.StationViewModel
+import androidx.wear.compose.material.TitleCard
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.compose.layout.ScalingLazyColumn
 import com.google.android.horologist.compose.layout.ScalingLazyColumnDefaults
 import com.google.android.horologist.compose.layout.ScreenScaffold
 import com.google.android.horologist.compose.layout.rememberResponsiveColumnState
-import com.google.android.horologist.compose.material.Chip
 import com.google.android.horologist.compose.material.ListHeaderDefaults
 import com.google.android.horologist.compose.material.ResponsiveListHeader
+import com.samrobbins.android.wearable.metrotimes.ui.PlatformState
+import com.samrobbins.android.wearable.metrotimes.ui.StationState
+import com.samrobbins.android.wearable.metrotimes.ui.StationViewModel
 
 @OptIn(ExperimentalHorologistApi::class)
 @Composable
-fun ListScreen(selectStation: (String) -> Unit) {
+fun PlatformScreen(station: String?, selectPlatform: (String) -> Unit) {
     val stationViewModel: StationViewModel = viewModel()
+    val platformState = stationViewModel.platformState
     val stationState = stationViewModel.stationState
-    /*
-     * Specifying the types of items that appear at the start and end of the list ensures that the
-     * appropriate padding is used.
-     */
     val columnState = rememberResponsiveColumnState(
         contentPadding = ScalingLazyColumnDefaults.padding(
             first = ScalingLazyColumnDefaults.ItemType.Text,
-            last = ScalingLazyColumnDefaults.ItemType.Chip
+            last = ScalingLazyColumnDefaults.ItemType.SingleButton
         )
     )
 
@@ -45,41 +43,53 @@ fun ListScreen(selectStation: (String) -> Unit) {
          * padding for the list, so there is no need to specify it, as in the [GreetingScreen]
          * composable.
          */
-        when (stationState) {
-            is StationState.Loading -> CircularProgressIndicator(
+        when (platformState) {
+            is PlatformState.Loading -> CircularProgressIndicator(
                 modifier = Modifier.fillMaxSize(),
                 strokeWidth = 4.dp
             )
 
-            is StationState.Error -> Text(
+            is PlatformState.Error -> Text(
                 modifier = Modifier.fillMaxWidth(),
                 textAlign = TextAlign.Center,
                 color = MaterialTheme.colors.primary,
                 text = "Error"
             )
 
-            is StationState.Success ->
+            is PlatformState.Success ->
                 ScalingLazyColumn(
                     columnState = columnState,
                     modifier = Modifier
                         .fillMaxSize()
                 ) {
-                    item {
-                        ResponsiveListHeader(contentPadding = ListHeaderDefaults.firstItemPadding()) {
-                            Text(text = "Stations")
+                    val platforms = platformState.platforms[station]
+                    if (platforms?.isEmpty() == false) {
+                        item {
+                            ResponsiveListHeader(contentPadding = ListHeaderDefaults.firstItemPadding()) {
+                                Text(
+                                    text = if (stationState is StationState.Success
+                                    ) (stationState.stations[station]
+                                        ?: "Platforms") else "Platforms"
+                                )
+                            }
+                        }
+                        items(platforms) { platform ->
+                            TitleCard(
+                                onClick = { selectPlatform(platform.platformNumber.toString()) },
+                                title = { Text("Platform ${platform.platformNumber}") },
+                                backgroundPainter = CardDefaults.cardBackgroundPainter(
+                                    startBackgroundColor = MaterialTheme.colors.surface,
+                                    endBackgroundColor = MaterialTheme.colors.surface
+                                )
+                            ) {
+                                Text(text = platform.helperText)
+                            }
                         }
                     }
-                    items(stationState.stations.entries.toList()) { station ->
-                        Chip(
-                            label = station.value,
-                            onClick = { selectStation(station.key) },
-                            colors = ChipDefaults.secondaryChipColors()
-                        )
-                    }
-
 
                 }
         }
 
     }
+
 }

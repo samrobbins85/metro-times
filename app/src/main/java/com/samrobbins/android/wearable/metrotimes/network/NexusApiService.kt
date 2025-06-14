@@ -1,4 +1,4 @@
-package com.example.android.wearable.composestarter.presentation.network
+package com.samrobbins.android.wearable.metrotimes.network
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json

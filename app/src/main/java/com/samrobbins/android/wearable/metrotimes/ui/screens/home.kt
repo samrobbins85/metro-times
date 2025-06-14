@@ -1,4 +1,4 @@
-package com.example.android.wearable.composestarter.presentation.ui.screens
+package com.samrobbins.android.wearable.metrotimes.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,8 +14,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.wear.compose.material.ChipDefaults
 import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Text
-import com.example.android.wearable.composestarter.presentation.ui.StationState
-import com.example.android.wearable.composestarter.presentation.ui.StationViewModel
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.compose.layout.ScalingLazyColumnDefaults
 import com.google.android.horologist.compose.layout.ScreenScaffold
@@ -23,6 +21,8 @@ import com.google.android.horologist.compose.material.Chip
 import com.google.android.horologist.compose.material.ListHeaderDefaults
 import com.google.android.horologist.compose.material.ResponsiveListHeader
 import com.google.android.horologist.compose.rotaryinput.rotaryWithScroll
+import com.samrobbins.android.wearable.metrotimes.ui.StationState
+import com.samrobbins.android.wearable.metrotimes.ui.StationViewModel
 
 @OptIn(ExperimentalHorologistApi::class)
 @Composable
@@ -47,7 +47,11 @@ fun GreetingScreen(onShowList: () -> Unit) {
             verticalArrangement = Arrangement.Center
         ) {
             Greeting()
-            Chip(label = "Show List", onClick = onShowList, colors = ChipDefaults.secondaryChipColors())
+            Chip(
+                label = "Show List",
+                onClick = onShowList,
+                colors = ChipDefaults.secondaryChipColors()
+            )
         }
     }
 }

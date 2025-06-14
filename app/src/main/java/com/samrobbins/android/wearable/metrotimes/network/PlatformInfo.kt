@@ -1,4 +1,4 @@
-package com.example.android.wearable.composestarter.presentation.network
+package com.samrobbins.android.wearable.metrotimes.network
 
 import kotlinx.serialization.Serializable
 

@@ -23,10 +23,10 @@ plugins {
 android {
   compileSdk 35
 
-  namespace "com.example.android.wearable.composestarter"
+  namespace "com.samrobbins.android.wearable.metrotimes"
 
   defaultConfig {
-    applicationId "com.example.android.wearable.composestarter"
+    applicationId "com.samrobbins.android.wearable.metrotimes"
     minSdk 26
     targetSdk 33
     versionCode 1

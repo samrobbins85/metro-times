@@ -32,7 +32,7 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
--keep class com.example.android.wearable.composestarter.** { *; }
+-keep class com.samrobbins.android.wearable.metrotimes.** { *; }
 -keepattributes Annotation
 
 # Add these rules to your existing proguard-rules.pro file
@@ -46,16 +46,16 @@
 -keepattributes RuntimeVisibleAnnotations,AnnotationDefault
 
 # Keep Kotlin serialization classes and their serializers
--keep,includedescriptorclasses class com.example.android.wearable.composestarter.**$$serializer { *; }
--keepclassmembers class com.example.android.wearable.composestarter.** {
+-keep,includedescriptorclasses class com.samrobbins.android.wearable.metrotimes.**$$serializer { *; }
+-keepclassmembers class com.samrobbins.android.wearable.metrotimes.** {
     *** Companion;
 }
--keepclasseswithmembers class com.example.android.wearable.composestarter.** {
+-keepclasseswithmembers class com.samrobbins.android.wearable.metrotimes.** {
     kotlinx.serialization.KSerializer serializer(...);
 }
 
 # Keep serializable data classes
--keep @kotlinx.serialization.Serializable class com.example.android.wearable.composestarter.** { *; }
+-keep @kotlinx.serialization.Serializable class com.samrobbins.android.wearable.metrotimes.** { *; }
 
 # Retrofit specific rules for R8 full mode
 -keepattributes RuntimeVisibleParameterAnnotations

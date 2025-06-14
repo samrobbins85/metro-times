@@ -15,7 +15,7 @@
  */
 @file:OptIn(ExperimentalHorologistApi::class, ExperimentalWearFoundationApi::class)
 
-package com.example.android.wearable.composestarter.presentation
+package com.samrobbins.android.wearable.metrotimes
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -27,13 +27,13 @@ import androidx.wear.compose.navigation.composable
 import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
 import androidx.wear.compose.ui.tooling.preview.WearPreviewDevices
 import androidx.wear.compose.ui.tooling.preview.WearPreviewFontScales
-import com.example.android.wearable.composestarter.presentation.theme.WearAppTheme
-import com.example.android.wearable.composestarter.presentation.ui.screens.GreetingScreen
-import com.example.android.wearable.composestarter.presentation.ui.screens.ListScreen
-import com.example.android.wearable.composestarter.presentation.ui.screens.PlatformScreen
-import com.example.android.wearable.composestarter.presentation.ui.screens.TimesScreen
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.compose.layout.AppScaffold
+import com.samrobbins.android.wearable.metrotimes.theme.WearAppTheme
+import com.samrobbins.android.wearable.metrotimes.ui.screens.GreetingScreen
+import com.samrobbins.android.wearable.metrotimes.ui.screens.ListScreen
+import com.samrobbins.android.wearable.metrotimes.ui.screens.PlatformScreen
+import com.samrobbins.android.wearable.metrotimes.ui.screens.TimesScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

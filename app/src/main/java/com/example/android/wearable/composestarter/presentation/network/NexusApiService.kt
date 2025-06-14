@@ -1,11 +1,10 @@
 package com.example.android.wearable.composestarter.presentation.network
+
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
 import retrofit2.http.GET
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.internal.platform.Platform
 import retrofit2.http.Path
 
 private const val BASE_URL =
@@ -17,13 +16,18 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 
-interface NexusApiService{
+interface NexusApiService {
     @GET("stations")
     suspend fun getStations(): Map<String, String>
+
     @GET("stations/platforms")
-    suspend fun getPlatforms(): Map<String,List<PlatformInfo>>
+    suspend fun getPlatforms(): Map<String, List<PlatformInfo>>
+
     @GET("times/{station}/{platform}")
-    suspend fun getTimes(@Path("station") station: String, @Path("platform") platform: String): List<TimeInfo>
+    suspend fun getTimes(
+        @Path("station") station: String,
+        @Path("platform") platform: String
+    ): List<TimeInfo>
 }
 
 object NexusApi {

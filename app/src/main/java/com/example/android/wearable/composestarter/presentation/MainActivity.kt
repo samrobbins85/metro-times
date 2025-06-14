@@ -64,11 +64,11 @@ fun WearApp() {
     val navController = rememberSwipeDismissableNavController()
     AppScaffold {
         SwipeDismissableNavHost(navController = navController, startDestination = "menu") {
-            composable("menu") {
-                GreetingScreen(
-                    onShowList = { navController.navigate("list") }
-                )
-            }
+//            composable("menu") {
+//                GreetingScreen(
+//                    onShowList = { navController.navigate("list") }
+//                )
+//            }
             composable("list") {
                 ListScreen(selectStation = { station: String -> navController.navigate("platforms/${station}") })
             }

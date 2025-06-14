@@ -10,5 +10,7 @@ data class TimeInfo(
     val lastEventTime: String,
     val destination: String,
     val dueIn: Int,
-    val line: String
+    val line: String,
+    val actualScheduledTime: String? = null,
+    val actualPredictedTime: String? = null
 )

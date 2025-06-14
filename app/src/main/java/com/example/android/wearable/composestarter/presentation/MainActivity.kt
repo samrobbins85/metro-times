@@ -29,12 +29,12 @@ import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
 import androidx.wear.compose.ui.tooling.preview.WearPreviewDevices
 import androidx.wear.compose.ui.tooling.preview.WearPreviewFontScales
 import com.example.android.wearable.composestarter.presentation.theme.WearAppTheme
-import com.google.android.horologist.annotations.ExperimentalHorologistApi
-import com.google.android.horologist.compose.layout.AppScaffold
 import com.example.android.wearable.composestarter.presentation.ui.screens.GreetingScreen
 import com.example.android.wearable.composestarter.presentation.ui.screens.ListScreen
 import com.example.android.wearable.composestarter.presentation.ui.screens.PlatformScreen
 import com.example.android.wearable.composestarter.presentation.ui.screens.TimesScreen
+import com.google.android.horologist.annotations.ExperimentalHorologistApi
+import com.google.android.horologist.compose.layout.AppScaffold
 
 /**
  * Simple "Hello, World" app meant as a starting point for a new project using Compose for Wear OS.
@@ -63,19 +63,22 @@ class MainActivity : ComponentActivity() {
 fun WearApp() {
     val navController = rememberSwipeDismissableNavController()
     AppScaffold {
-        SwipeDismissableNavHost(navController = navController, startDestination = "menu") {
-//            composable("menu") {
-//                GreetingScreen(
-//                    onShowList = { navController.navigate("list") }
-//                )
-//            }
+        SwipeDismissableNavHost(navController = navController, startDestination = "list") {
             composable("list") {
                 ListScreen(selectStation = { station: String -> navController.navigate("platforms/${station}") })
             }
             composable("platforms/{station}") { backStackEntry ->
                 PlatformScreen(
                     station = backStackEntry.arguments?.getString("station"),
-                    selectPlatform = { platform: String -> navController.navigate("times/${backStackEntry.arguments?.getString("station")}/${platform}")}
+                    selectPlatform = { platform: String ->
+                        navController.navigate(
+                            "times/${
+                                backStackEntry.arguments?.getString(
+                                    "station"
+                                )
+                            }/${platform}"
+                        )
+                    }
                 )
             }
             composable("times/{station}/{platform}") { backStackEntry ->

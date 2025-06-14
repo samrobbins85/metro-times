@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
      Copyright (C) 2021 The Android Open Source Project
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -12,7 +11,5 @@
      limitations under the License.
 -->
 <resources>
-    <string name="app_name">ComposeStarter</string>
-
-    <string name="hello_world">From the Round world,\nHello, %1$s!</string>
+    <string name="app_name">Metro Times</string>
 </resources>

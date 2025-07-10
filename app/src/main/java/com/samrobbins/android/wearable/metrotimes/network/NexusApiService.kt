@@ -10,9 +10,12 @@ import retrofit2.http.Path
 private const val BASE_URL =
     "https://metro-rti.nexus.org.uk/api/"
 
+private val json = Json {
+    ignoreUnknownKeys = true
+}
 
 private val retrofit = Retrofit.Builder()
-    .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+    .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
     .baseUrl(BASE_URL)
     .build()
 
